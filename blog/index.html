@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>XySide Matrix Blog &amp; Case Studies</title>
-  <meta name="description" content="XySide Matrix Blog and Case Studies will host product notes, privacy-first architecture breakdowns, and operator-focused tool research.">
+  <meta name="description" content="XySide Matrix Blog and Case Studies covers freelance finance workflows, browser-native image privacy, and AI prompt operations.">
   <style>
     :root {
       --bg: #fafafa;
-      --surface: rgba(255, 255, 255, 0.92);
+      --surface: rgba(255, 255, 255, 0.94);
       --text: #0f172a;
       --muted: #475569;
       --line: rgba(148, 163, 184, 0.24);
       --accent: #2563eb;
-      --max-width: 960px;
+      --accent-soft: rgba(37, 99, 235, 0.1);
+      --max-width: 1060px;
     }
 
     * {
@@ -80,28 +81,26 @@
     }
 
     .nav-links a:hover,
-    .footer-links a:hover {
+    .footer-links a:hover,
+    .nav-links a[aria-current="page"] {
       color: var(--accent);
-      background: rgba(37, 99, 235, 0.08);
+      background: var(--accent-soft);
     }
 
     main {
-      padding: 72px 0;
+      padding: 68px 0;
     }
 
     .hero {
-      padding: 44px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: var(--surface);
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.07);
+      max-width: 780px;
+      margin-bottom: 34px;
     }
 
     .eyebrow {
       display: inline-flex;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(37, 99, 235, 0.1);
+      background: var(--accent-soft);
       color: var(--accent);
       font-weight: 800;
       font-size: 0.86rem;
@@ -116,12 +115,66 @@
       letter-spacing: 0;
     }
 
-    p {
+    .hero p {
       margin: 0;
-      max-width: 68ch;
       color: var(--muted);
-      font-size: 1.05rem;
+      font-size: 1.06rem;
       line-height: 1.8;
+    }
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .post-card {
+      display: grid;
+      gap: 14px;
+      min-height: 310px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(37, 99, 235, 0.28);
+      box-shadow: 0 28px 62px rgba(37, 99, 235, 0.1);
+    }
+
+    .tag {
+      width: fit-content;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.34rem;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .post-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .read-link {
+      align-self: end;
+      color: var(--accent);
+      font-weight: 800;
     }
 
     footer {
@@ -137,15 +190,17 @@
       border-top: 1px solid var(--line);
     }
 
+    @media (max-width: 900px) {
+      .post-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 700px) {
       .nav,
       .footer-shell {
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .hero {
-        padding: 28px;
       }
     }
   </style>
@@ -156,7 +211,7 @@
       <a class="brand" href="https://xyside.com/">XySide Matrix</a>
       <nav class="nav-links" aria-label="Primary">
         <a href="https://xyside.com/">Hub Home</a>
-        <a href="https://xyside.com/blog/">Blog</a>
+        <a href="https://xyside.com/blog/" aria-current="page">Blog</a>
         <a href="https://xyside.com/privacy.html">Privacy Policy</a>
         <a href="https://xyside.com/terms.html">Terms of Service</a>
       </nav>
@@ -166,13 +221,44 @@
   <main>
     <div class="container">
       <section class="hero">
-        <span class="eyebrow">Editorial Node</span>
+        <span class="eyebrow">Field Notes</span>
         <h1>XySide Matrix Blog &amp; Case Studies</h1>
         <p>
-          This space is reserved for future product essays, operator playbooks, privacy-first
-          architecture notes, monetization experiments, and field reports from the XySide tool
-          ecosystem.
+          Practical notes for the three XySide satellites: freelance finance modeling, local image
+          privacy workflows, and prompt operations for AI-heavy builders.
         </p>
+      </section>
+
+      <section class="post-grid" aria-label="Latest articles">
+        <a class="post-card" href="https://xyside.com/blog/freelance-finance-command-center.html">
+          <span class="tag">Freelance Finance</span>
+          <h2>How Freelancers Can Turn Messy Income Into a Clean Financial Command Center</h2>
+          <p>
+            A practical operating model for organizing client revenue, platform fees, unpaid time,
+            expenses, and estimated tax reserves without turning bookkeeping into a second job.
+          </p>
+          <span class="read-link">Read article</span>
+        </a>
+
+        <a class="post-card" href="https://xyside.com/blog/local-image-privacy-before-upload.html">
+          <span class="tag">Image Privacy</span>
+          <h2>Why Local Image Optimization Should Happen Before Anything Touches a Server</h2>
+          <p>
+            A browser-native workflow for compressing image assets, stripping sensitive metadata,
+            and publishing smaller files without exposing originals to another upload pipeline.
+          </p>
+          <span class="read-link">Read article</span>
+        </a>
+
+        <a class="post-card" href="https://xyside.com/blog/prompt-cost-control-for-ai-builders.html">
+          <span class="tag">AI Operations</span>
+          <h2>Prompt Cost Control: A Simple Budget Loop for AI-First Builders</h2>
+          <p>
+            A lean method for estimating monthly model spend from prompt size, response length,
+            call volume, and structured prompt reuse before an AI feature reaches production scale.
+          </p>
+          <span class="read-link">Read article</span>
+        </a>
       </section>
     </div>
   </main>
@@ -182,9 +268,8 @@
       <div>&copy; 2026 XySide. All rights reserved.</div>
       <div class="footer-links">
         <a href="https://xyside.com/">Hub Home</a>
-        <a href="https://calc.xyside.com/">Tax Calculator</a>
-        <a href="https://tools.xyside.com/">Image Optimizer</a>
-        <a href="https://ai.xyside.com/">Prompt Studio</a>
+        <a href="https://xyside.com/privacy.html">Privacy Policy</a>
+        <a href="https://xyside.com/terms.html">Terms of Service</a>
       </div>
     </div>
   </footer>

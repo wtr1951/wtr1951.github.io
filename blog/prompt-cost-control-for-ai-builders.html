@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Cost Control for AI Builders | XySide Matrix Blog</title>
+  <meta name="description" content="A practical budget loop for AI builders estimating model spend from prompt size, output length, call volume, and prompt reuse.">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: rgba(255, 255, 255, 0.94);
+      --text: #0f172a;
+      --muted: #475569;
+      --line: rgba(148, 163, 184, 0.24);
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.1);
+      --max-width: 860px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(250, 250, 250, 0) 34%),
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, 32px 32px, 32px 32px, auto;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(calc(100% - 40px), var(--max-width)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(250, 250, 250, 0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav, .footer-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .nav { min-height: 76px; }
+    .brand { font-weight: 800; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; color: var(--muted); }
+    .links a { padding: 9px 12px; border-radius: 999px; }
+    .links a:hover { color: var(--accent); background: var(--accent-soft); }
+    main { padding: 64px 0; }
+
+    article {
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.07);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 { margin: 20px 0 12px; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.03; letter-spacing: 0; }
+    h2 { margin: 34px 0 12px; font-size: 1.4rem; letter-spacing: 0; }
+    .dek, p, li { color: var(--muted); line-height: 1.8; font-size: 1.02rem; }
+    ul { padding-left: 22px; }
+    code { padding: 2px 6px; border-radius: 7px; background: rgba(15, 23, 42, 0.06); }
+    footer { padding: 0 0 44px; color: var(--muted); }
+    .footer-shell { padding: 20px 0; border-top: 1px solid var(--line); }
+
+    @media (max-width: 700px) {
+      .nav, .footer-shell { flex-direction: column; align-items: flex-start; }
+      article { padding: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="https://xyside.com/">XySide Matrix</a>
+      <nav class="links" aria-label="Primary">
+        <a href="https://xyside.com/">Hub Home</a>
+        <a href="https://xyside.com/blog/">Blog</a>
+        <a href="https://xyside.com/privacy.html">Privacy Policy</a>
+        <a href="https://xyside.com/terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <article>
+        <span class="eyebrow">AI Operations</span>
+        <h1>Prompt Cost Control: A Simple Budget Loop for AI-First Builders</h1>
+        <p class="dek">
+          AI products rarely fail because one prompt is expensive. They fail when a small prompt
+          pattern is repeated thousands or millions of times without a clear cost model.
+        </p>
+
+        <h2>Use a four-part cost model</h2>
+        <p>
+          A practical AI budget starts with four inputs: prompt tokens, expected response tokens,
+          estimated monthly calls, and the model's input/output pricing. This gives builders a fast
+          way to compare prompt designs before usage grows.
+        </p>
+        <ul>
+          <li><code>Prompt size</code>: the reusable instructions, framework, variables, and examples.</li>
+          <li><code>Output size</code>: the average answer length required by the product experience.</li>
+          <li><code>Call volume</code>: the number of monthly user or system-triggered completions.</li>
+          <li><code>Model mix</code>: the routing split between cheaper utility models and frontier models.</li>
+        </ul>
+
+        <h2>Structured prompts are easier to budget</h2>
+        <p>
+          Frameworks such as CO-STAR or CRISPE are valuable because they make prompt intent
+          explicit. They also make cost analysis easier: teams can see which sections are stable,
+          which variables change per request, and which examples should be removed, shortened, or
+          moved to retrieval.
+        </p>
+
+        <h2>Control output length before optimizing model choice</h2>
+        <p>
+          Many teams focus on model selection first. A better first pass is to clarify the response
+          contract. If the application only needs a compact classification, summary, or structured
+          JSON object, the prompt should ask for exactly that. Output discipline often saves more
+          than switching providers.
+        </p>
+
+        <h2>Build a monthly review loop</h2>
+        <p>
+          AI spending should be reviewed like infrastructure spending. Keep a recurring check on
+          average tokens per request, top workflows by call volume, cacheable prompts, and the
+          percentage of requests that genuinely need the most capable model.
+        </p>
+        <p>
+          XySide AI Prompt Studio turns this into a local planning loop: write the prompt, inject
+          variables, estimate token load, and compare model cost bands before the prompt reaches a
+          production integration.
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-shell">
+      <div>&copy; 2026 XySide. All rights reserved.</div>
+      <div class="links">
+        <a href="https://xyside.com/blog/">Blog Index</a>
+        <a href="https://ai.xyside.com/">Open Prompt Studio</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

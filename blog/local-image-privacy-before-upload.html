@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Image Privacy Before Upload | XySide Matrix Blog</title>
+  <meta name="description" content="Why browser-native image compression and metadata stripping should happen before assets enter a server-side upload pipeline.">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: rgba(255, 255, 255, 0.94);
+      --text: #0f172a;
+      --muted: #475569;
+      --line: rgba(148, 163, 184, 0.24);
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.1);
+      --max-width: 860px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(250, 250, 250, 0) 34%),
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, 32px 32px, 32px 32px, auto;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(calc(100% - 40px), var(--max-width)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(250, 250, 250, 0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav, .footer-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .nav { min-height: 76px; }
+    .brand { font-weight: 800; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; color: var(--muted); }
+    .links a { padding: 9px 12px; border-radius: 999px; }
+    .links a:hover { color: var(--accent); background: var(--accent-soft); }
+    main { padding: 64px 0; }
+
+    article {
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.07);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 { margin: 20px 0 12px; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.03; letter-spacing: 0; }
+    h2 { margin: 34px 0 12px; font-size: 1.4rem; letter-spacing: 0; }
+    .dek, p, li { color: var(--muted); line-height: 1.8; font-size: 1.02rem; }
+    ul { padding-left: 22px; }
+    footer { padding: 0 0 44px; color: var(--muted); }
+    .footer-shell { padding: 20px 0; border-top: 1px solid var(--line); }
+
+    @media (max-width: 700px) {
+      .nav, .footer-shell { flex-direction: column; align-items: flex-start; }
+      article { padding: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="https://xyside.com/">XySide Matrix</a>
+      <nav class="links" aria-label="Primary">
+        <a href="https://xyside.com/">Hub Home</a>
+        <a href="https://xyside.com/blog/">Blog</a>
+        <a href="https://xyside.com/privacy.html">Privacy Policy</a>
+        <a href="https://xyside.com/terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <article>
+        <span class="eyebrow">Image Privacy</span>
+        <h1>Why Local Image Optimization Should Happen Before Anything Touches a Server</h1>
+        <p class="dek">
+          Image compression is usually treated as a performance step. For teams that handle client
+          assets, screenshots, product photography, or personal photos, it should also be treated as
+          a privacy step.
+        </p>
+
+        <h2>The upload pipeline is the risk surface</h2>
+        <p>
+          A typical image optimizer asks the user to upload a source file, waits for a server-side
+          job, and returns a smaller image. That may be convenient, but it means the highest-quality
+          original enters a third-party system before the user knows exactly what will be retained,
+          logged, or processed.
+        </p>
+
+        <h2>Browser-native compression changes the order of operations</h2>
+        <p>
+          A local-first image workflow compresses and re-encodes the file inside the browser. The
+          original remains on the user's machine, while the exported file can be smaller and cleaner
+          before it is ever attached to a CMS, a marketplace, a support ticket, or a public web page.
+        </p>
+
+        <h2>Metadata deserves explicit treatment</h2>
+        <p>
+          Image files can contain more than pixels. Camera metadata, timestamps, device details, and
+          location signals may be embedded in the file depending on how it was created. A privacy
+          workflow should make metadata removal a visible part of the export process instead of
+          treating it as an afterthought.
+        </p>
+        <ul>
+          <li>Compress the image before publishing it.</li>
+          <li>Strip metadata when location or device details are unnecessary.</li>
+          <li>Preview the optimized output before downloading it.</li>
+          <li>Keep the original local unless there is a clear reason to upload it.</li>
+        </ul>
+
+        <h2>Smaller files also improve operations</h2>
+        <p>
+          A smaller image loads faster, costs less bandwidth, and makes repeated publishing tasks
+          less painful. The best workflow handles both goals at once: privacy cleanup and file-size
+          reduction in the same local pass.
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-shell">
+      <div>&copy; 2026 XySide. All rights reserved.</div>
+      <div class="links">
+        <a href="https://xyside.com/blog/">Blog Index</a>
+        <a href="https://tools.xyside.com/">Open Image Optimizer</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

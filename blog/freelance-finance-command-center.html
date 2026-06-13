@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelance Financial Command Center | XySide Matrix Blog</title>
+  <meta name="description" content="A practical freelance finance workflow for tracking client income, platform fees, unpaid time, expenses, and estimated tax reserves.">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: rgba(255, 255, 255, 0.94);
+      --text: #0f172a;
+      --muted: #475569;
+      --line: rgba(148, 163, 184, 0.24);
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.1);
+      --max-width: 860px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(250, 250, 250, 0) 34%),
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, 32px 32px, 32px 32px, auto;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(250, 250, 250, 0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav, .footer-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .nav { min-height: 76px; }
+    .brand { font-weight: 800; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .links a {
+      padding: 9px 12px;
+      border-radius: 999px;
+    }
+
+    .links a:hover {
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    main { padding: 64px 0; }
+
+    article {
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.07);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+
+    .dek, p, li {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.02rem;
+    }
+
+    h2 {
+      margin: 34px 0 12px;
+      font-size: 1.4rem;
+      letter-spacing: 0;
+    }
+
+    ul { padding-left: 22px; }
+
+    .note {
+      margin-top: 26px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: rgba(37, 99, 235, 0.07);
+      border: 1px solid rgba(37, 99, 235, 0.14);
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    footer {
+      padding: 0 0 44px;
+      color: var(--muted);
+    }
+
+    .footer-shell {
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 700px) {
+      .nav, .footer-shell {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      article { padding: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="https://xyside.com/">XySide Matrix</a>
+      <nav class="links" aria-label="Primary">
+        <a href="https://xyside.com/">Hub Home</a>
+        <a href="https://xyside.com/blog/">Blog</a>
+        <a href="https://xyside.com/privacy.html">Privacy Policy</a>
+        <a href="https://xyside.com/terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <article>
+        <span class="eyebrow">Freelance Finance</span>
+        <h1>How Freelancers Can Turn Messy Income Into a Clean Financial Command Center</h1>
+        <p class="dek">
+          Freelance income looks simple when a client pays the invoice. It becomes harder once you
+          include platform fees, payment delays, currency differences, business expenses, and money
+          that should be held back for estimated taxes.
+        </p>
+
+        <h2>Start with the gross-to-net path</h2>
+        <p>
+          The cleanest freelance dashboard starts with gross client revenue and then walks downward:
+          payment processor or marketplace fees, hard project costs, recurring software, unpaid
+          admin time, and a tax reserve. This structure keeps the conversation honest because it
+          separates what the client paid from what the freelancer can actually keep.
+        </p>
+
+        <h2>Track work effort, not just invoice value</h2>
+        <p>
+          A fixed-price project can look profitable until discovery calls, revisions, sales work,
+          and waiting time are included. A useful calculator should normalize every project into an
+          effective hourly rate. That single number helps freelancers compare retainers, hourly
+          contracts, and fixed bids without guessing.
+        </p>
+
+        <h2>Keep records boring and defensible</h2>
+        <p>
+          For U.S. freelancers, the IRS generally frames business expenses around whether costs are
+          ordinary and necessary for the business. The safest workflow is not aggressive deduction
+          hunting. It is consistent recordkeeping: invoices, receipts, business-use percentages, and
+          simple notes that explain why a tool or purchase supported client work.
+        </p>
+        <ul>
+          <li>Record each client payment before deductions.</li>
+          <li>Track platform and processor fees as separate line items.</li>
+          <li>Keep recurring tools, hosting, AI subscriptions, and software in one expense ledger.</li>
+          <li>Separate tax estimates from spendable cash as soon as revenue arrives.</li>
+        </ul>
+
+        <h2>Use calculation as a planning layer</h2>
+        <p>
+          XySide's calculator is best treated as a planning workspace. It helps structure the
+          financial model before a proposal is sent, before a retainer is renewed, or before a tax
+          reserve is moved. The output is not professional tax advice, but it does give freelancers
+          a clearer view of risk, margin, and billing efficiency.
+        </p>
+
+        <div class="note">
+          Educational note: this article is for general information only. For official U.S. guidance,
+          review IRS resources such as
+          <a href="https://www.irs.gov/publications/p535">Publication 535, Business Expenses</a> and
+          the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/home-office-deduction">Home Office Deduction</a>
+          page, and consult a licensed professional for your situation.
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-shell">
+      <div>&copy; 2026 XySide. All rights reserved.</div>
+      <div class="links">
+        <a href="https://xyside.com/blog/">Blog Index</a>
+        <a href="https://calc.xyside.com/">Open Calculator</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
