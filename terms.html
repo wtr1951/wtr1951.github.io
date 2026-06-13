@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XySide Matrix | Terms of Service</title>
+  <meta
+    name="description"
+    content="Universal terms of service for XySide Matrix and current or future tools across the XySide network."
+  >
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: rgba(255, 255, 255, 0.92);
+      --text: #0f172a;
+      --muted: #475569;
+      --line: rgba(148, 163, 184, 0.24);
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.1);
+      --max-width: 980px;
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(37, 99, 235, 0.05), rgba(250, 250, 250, 0) 26%),
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, 32px 32px, 32px 32px, auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(250, 250, 250, 0.82);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 76px;
+    }
+
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    main {
+      padding: 54px 0 48px;
+    }
+
+    .panel {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 18px 48px rgba(15, 23, 42, 0.06);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.04rem;
+    }
+
+    .content {
+      margin-top: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    section {
+      padding: 22px 24px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.82;
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.82;
+    }
+
+    footer {
+      padding: 0 0 48px;
+    }
+
+    .footer-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 24px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .panel,
+      section,
+      .footer-shell {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .nav,
+      .footer-shell {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="https://xyside.com/">XySide Matrix</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="https://xyside.com/">Hub Home</a>
+        <a href="https://xyside.com/privacy.html">Privacy Policy</a>
+        <a href="https://xyside.com/terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="panel">
+        <span class="eyebrow">Usage Framework</span>
+        <h1>Terms of Service</h1>
+        <p class="lede">
+          These terms govern access to XySide Matrix, its current tools, and any future subdomains,
+          products, calculators, dashboards, or browser-native applications released under the
+          XySide network.
+        </p>
+
+        <div class="content">
+          <section>
+            <h2>Network Scope</h2>
+            <p>
+              These terms apply to https://xyside.com and all present or future XySide subdomains,
+              feature launches, and related digital properties unless a specific service posts
+              supplemental terms.
+            </p>
+          </section>
+
+          <section>
+            <h2>Informational Purposes Only</h2>
+            <p>
+              All tool outputs, pricing matrices, calculations, and financial estimates generated
+              across the XySide network are provided for educational and informational purposes only.
+              They do not constitute certified CPA, tax, legal, financial, or accounting advice.
+              Users must consult licensed professionals before executing real-world business actions.
+            </p>
+          </section>
+
+          <section>
+            <h2>No Professional Relationship</h2>
+            <p>
+              Your use of XySide products does not create an attorney-client, accountant-client,
+              fiduciary, consultancy, employment, or advisory relationship with XySide or any of
+              its operators, affiliates, or contributors.
+            </p>
+          </section>
+
+          <section>
+            <h2>Acceptable Use</h2>
+            <ul>
+              <li>You agree to use XySide properties only for lawful purposes and in compliance with applicable regulations.</li>
+              <li>You may not attempt to disrupt, reverse engineer, abuse, scrape, or interfere with the operation of the network.</li>
+              <li>You remain solely responsible for decisions made based on tool outputs or linked third-party resources.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Service Availability</h2>
+            <p>
+              XySide may update, pause, restrict, redesign, or discontinue any tool, feature,
+              interface, or monetization surface at any time without prior notice. Availability,
+              accuracy, and performance are provided on an "as is" and "as available" basis.
+            </p>
+          </section>
+
+          <section>
+            <h2>Third-Party Platforms</h2>
+            <p>
+              XySide properties may integrate with or link to advertising providers, analytics
+              providers, payment processors, hosting vendors, and other third-party services. We are
+              not responsible for the content, security, terms, or policies of those third parties.
+            </p>
+          </section>
+
+          <section>
+            <h2>Limitation of Liability</h2>
+            <p>
+              To the maximum extent permitted by law, XySide disclaims liability for direct,
+              indirect, incidental, consequential, special, exemplary, or punitive damages arising
+              from your access to or use of the network, including decisions based on outputs,
+              projections, estimates, or calculations.
+            </p>
+          </section>
+
+          <section>
+            <h2>Intellectual Property</h2>
+            <p>
+              Unless otherwise stated, the XySide brand, site design, original copy, interface
+              structure, and proprietary workflows remain protected by applicable intellectual
+              property laws. Limited personal and internal business use is permitted, but
+              unauthorized commercial duplication is prohibited.
+            </p>
+          </section>
+
+          <section>
+            <h2>Jurisdiction and Updates</h2>
+            <p>
+              These terms may be revised from time to time to reflect product expansion, regulatory
+              developments, or operational changes. Continued use of XySide properties after an
+              update constitutes acceptance of the revised terms to the extent permitted by law.
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-shell">
+      <div>&copy; 2026 XySide. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="https://xyside.com/">Hub Home</a>
+        <a href="https://xyside.com/privacy.html">Privacy Policy</a>
+        <a href="https://xyside.com/terms.html">Terms of Service</a>
+        <a href="https://calc.xyside.com/">Tax Calculator</a>
+        <a href="https://tools.xyside.com/">Image Optimizer</a>
+        <a href="https://ai.xyside.com/">Prompt Studio</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

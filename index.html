@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XySide Matrix | One Matrix. Infinite Productivity.</title>
+  <meta
+    name="description"
+    content="XySide Matrix is the central hub for privacy-first, browser-native productivity tools for developers, freelancers, and prompt architects."
+  >
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7466854383553853" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: rgba(255, 255, 255, 0.92);
+      --surface-strong: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: rgba(148, 163, 184, 0.22);
+      --line-strong: rgba(148, 163, 184, 0.32);
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --shadow: 0 28px 60px rgba(15, 23, 42, 0.08);
+      --radius: 24px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(250, 250, 250, 0) 28%),
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 32%),
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, auto, 32px 32px, 32px 32px, auto;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-shell::before,
+    .page-shell::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      pointer-events: none;
+      border-radius: 999px;
+      filter: blur(18px);
+      opacity: 0.65;
+    }
+
+    .page-shell::before {
+      width: 280px;
+      height: 280px;
+      top: 88px;
+      right: -96px;
+      background: rgba(37, 99, 235, 0.13);
+    }
+
+    .page-shell::after {
+      width: 260px;
+      height: 260px;
+      left: -88px;
+      bottom: 120px;
+      background: rgba(59, 130, 246, 0.11);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(250, 250, 250, 0.82);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 78px;
+    }
+
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: color 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.88);
+      transform: translateY(-1px);
+    }
+
+    main {
+      padding: 72px 0 48px;
+    }
+
+    .hero {
+      position: relative;
+      padding: 40px 0 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .hero h1 {
+      margin: 22px 0 18px;
+      max-width: 760px;
+      font-size: clamp(2.9rem, 6vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      line-height: 1.8;
+    }
+
+    .hero-band {
+      margin-top: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.04);
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .hero-band strong {
+      color: var(--text);
+    }
+
+    .grid-section {
+      padding: 56px 0 28px;
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-heading {
+      margin: 0;
+      font-size: clamp(1.9rem, 3.4vw, 3rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-copy {
+      margin: 14px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .card-grid {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 320px;
+      padding: 28px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.9)),
+        var(--surface-strong);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+      isolation: isolate;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        linear-gradient(140deg, rgba(37, 99, 235, 0.08), transparent 34%),
+        linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
+      opacity: 0;
+      transition: opacity 0.28s ease;
+      z-index: -1;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-10px);
+      border-color: rgba(37, 99, 235, 0.32);
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover::before,
+    .card:focus-visible::before {
+      opacity: 1;
+    }
+
+    .icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(37, 99, 235, 0.13), rgba(37, 99, 235, 0.06));
+      color: var(--accent);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.42rem;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.78;
+      flex: 1;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 12px 15px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      transition: gap 0.22s ease, background-color 0.22s ease;
+    }
+
+    .card:hover .card-link,
+    .card:focus-visible .card-link {
+      gap: 14px;
+      background: rgba(37, 99, 235, 0.16);
+    }
+
+    .support-strip {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .support-item {
+      padding: 20px 22px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .support-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    footer {
+      padding: 28px 0 48px;
+    }
+
+    .footer-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 24px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--accent);
+    }
+
+    @media (max-width: 920px) {
+      .card-grid,
+      .support-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .nav,
+      .footer-shell {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      main {
+        padding-top: 48px;
+      }
+
+      .card {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="container nav">
+        <a class="brand" href="https://xyside.com/">XySide Matrix</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="https://xyside.com/">Hub Home</a>
+          <a href="https://xyside.com/privacy.html">Privacy Policy</a>
+          <a href="https://xyside.com/terms.html">Terms of Service</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <span class="eyebrow">Central Control Hall for the XySide Ecosystem</span>
+          <h1>One Matrix. Infinite Productivity.</h1>
+          <p>
+            Welcome to XySide Studio. We engineer hyper-focused, privacy-first, and friction-free
+            browser-native tools to power independent developers, remote freelancers, and prompt
+            architects worldwide. 100% serverless. 100% secure.
+          </p>
+          <div class="hero-band">
+            <strong>Live Principles:</strong>
+            Local-first processing, zero-server architecture, premium utility design, and modular
+            expansion across every future XySide tool.
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-section">
+        <div class="container">
+          <p class="section-label">Satellite Grid</p>
+          <h2 class="section-heading">Launch precision tools without leaving the matrix.</h2>
+          <p class="section-copy">
+            Each satellite product is built for a narrow, high-leverage workflow. Clean execution,
+            privacy-first interaction, and fast browser-native performance remain the baseline.
+          </p>
+
+          <div class="card-grid">
+            <a class="card" href="https://calc.xyside.com/" target="_blank" rel="noopener noreferrer">
+              <span class="icon-wrap" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="3" width="16" height="18" rx="3"></rect>
+                  <line x1="8" y1="7.5" x2="16" y2="7.5"></line>
+                  <line x1="8" y1="12" x2="10" y2="12"></line>
+                  <line x1="14" y1="12" x2="16" y2="12"></line>
+                  <line x1="8" y1="16" x2="10" y2="16"></line>
+                  <line x1="14" y1="16" x2="16" y2="16"></line>
+                </svg>
+              </span>
+              <h3>Freelance Tax Calculator</h3>
+              <p>
+                Track multi-currency cross-border income, estimate freelancer tax exposure, and map
+                expense flow dynamics with structured calculation views built for independent operators.
+              </p>
+              <span class="card-link">Open Calculator <span aria-hidden="true">-></span></span>
+            </a>
+
+            <a class="card" href="https://tools.xyside.com/" target="_blank" rel="noopener noreferrer">
+              <span class="icon-wrap" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3 4 7v5c0 5 3.4 8.8 8 9.9 4.6-1.1 8-4.9 8-9.9V7l-8-4Z"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </span>
+              <h3>Smart Image Optimizer</h3>
+              <p>
+                Compress images in a 100% browser sandbox, batch-remove sensitive EXIF metadata, and
+                keep privacy-critical assets local while producing cleaner files for publishing.
+              </p>
+              <span class="card-link">Optimize Images <span aria-hidden="true">-></span></span>
+            </a>
+
+            <a class="card" href="https://ai.xyside.com/" target="_blank" rel="noopener noreferrer">
+              <span class="icon-wrap" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 4a3 3 0 0 1 3 3v1.2a4 4 0 0 1 2.4 3.64V13a4 4 0 0 1-2.1 3.51l-.3 1.49H8.99l-.29-1.49A4 4 0 0 1 6.6 13v-1.16A4 4 0 0 1 9 8.2V7a3 3 0 0 1 3-3Z"></path>
+                  <path d="M10 18h4"></path>
+                  <path d="M9.5 21h5"></path>
+                  <path d="M8.5 12h7"></path>
+                </svg>
+              </span>
+              <h3>Premium AI Prompt Studio</h3>
+              <p>
+                Refine enterprise-grade prompts with CO-STAR and CRISPE structures, inject dynamic
+                variables, and compare 2026 frontier model API cost scenarios with decision-ready clarity.
+              </p>
+              <span class="card-link">Enter Prompt Studio <span aria-hidden="true">-></span></span>
+            </a>
+          </div>
+
+          <div class="support-strip">
+            <div class="support-item">
+              <strong>Privacy by default</strong>
+              Matrix products are designed around browser-native execution to minimize data exposure
+              and preserve user control.
+            </div>
+            <div class="support-item">
+              <strong>Scalable legal surface</strong>
+              The hub, privacy policy, and terms are structured to cover current and future XySide
+              subdomains with minimal maintenance.
+            </div>
+            <div class="support-item">
+              <strong>Built for modular growth</strong>
+              This portal acts as the command center for a broader ecosystem of focused SaaS utilities
+              and monetized micro-products.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-shell">
+        <div>&copy; 2026 XySide. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="https://xyside.com/">Hub Home</a>
+          <a href="https://xyside.com/privacy.html">Privacy Policy</a>
+          <a href="https://xyside.com/terms.html">Terms of Service</a>
+          <a href="https://calc.xyside.com/">Tax Calculator</a>
+          <a href="https://tools.xyside.com/">Image Optimizer</a>
+          <a href="https://ai.xyside.com/">Prompt Studio</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
